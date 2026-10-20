@@ -1,0 +1,436 @@
+{
+"files": [
+{
+"path": "config.js",
+"hash": "36a80ee24f8fef213601a7a91ea8c0c5",
+"ct": "application/javascript",
+"size": 3052
+},
+{
+"path": "favicon.svg",
+"hash": "b16493e6b8418bfe14c1b89e57069644",
+"ct": "image/svg+xml",
+"size": 8070
+},
+{
+"path": "fonts.css",
+"hash": "dcc26ee47b4fd444e35faacaff0d40de",
+"ct": "text/css",
+"size": 10696
+},
+{
+"path": "fonts/golos-text-cyrillic-721d01.woff2",
+"hash": "b4af41e7391f2905be42e49fccd53549",
+"ct": "font/woff2",
+"size": 22028
+},
+{
+"path": "fonts/golos-text-cyrillic-ext-b06cf9.woff2",
+"hash": "3c442b35c410addd06fd8c4bb9c949df",
+"ct": "font/woff2",
+"size": 17532
+},
+{
+"path": "fonts/golos-text-latin-65c68b.woff2",
+"hash": "94853006db26b224ff2b3c8741b83a12",
+"ct": "font/woff2",
+"size": 38084
+},
+{
+"path": "fonts/golos-text-latin-ext-52fc06.woff2",
+"hash": "cf1489395b53abd0ad81efb23b51ab54",
+"ct": "font/woff2",
+"size": 19204
+},
+{
+"path": "fonts/jetbrains-mono-cyrillic-ext-982bf4.woff2",
+"hash": "c7ca54cd159526257894e095530fc774",
+"ct": "font/woff2",
+"size": 1664
+},
+{
+"path": "fonts/jetbrains-mono-cyrillic-ffa6bb.woff2",
+"hash": "8e8ccbd40bd20051ad36ffc5513aaa99",
+"ct": "font/woff2",
+"size": 8892
+},
+{
+"path": "fonts/jetbrains-mono-latin-1cd702.woff2",
+"hash": "26ae54996f592d71a9dad6023228d026",
+"ct": "font/woff2",
+"size": 31340
+},
+{
+"path": "fonts/jetbrains-mono-latin-ext-76306e.woff2",
+"hash": "07a8295a58a8fa724786fe7a861baa6c",
+"ct": "font/woff2",
+"size": 11596
+},
+{
+"path": "fonts/unbounded-cyrillic-cb504d.woff2",
+"hash": "11fdbcbdf0fc61620a1049ddcbd973b5",
+"ct": "font/woff2",
+"size": 31460
+},
+{
+"path": "fonts/unbounded-cyrillic-ext-497409.woff2",
+"hash": "aa9abfed08550544871c759859a6e431",
+"ct": "font/woff2",
+"size": 1816
+},
+{
+"path": "fonts/unbounded-latin-37e641.woff2",
+"hash": "78f861e45dd5dcf3373e5de6096344ce",
+"ct": "font/woff2",
+"size": 50892
+},
+{
+"path": "fonts/unbounded-latin-ext-936fcc.woff2",
+"hash": "e1f46347721323c3f5ca7f12f0e29407",
+"ct": "font/woff2",
+"size": 117648
+},
+{
+"path": "img/tr-about-4x5.jpg",
+"hash": "aeac615f9d1e0b5cd53dd21b034cfced",
+"ct": "image/jpeg",
+"size": 294806
+},
+{
+"path": "img/tr-hero-4x5.jpg",
+"hash": "0d7ba3ac4890ac2c2fb5ed71de1e4e15",
+"ct": "image/jpeg",
+"size": 271244
+},
+{
+"path": "img/tr-og.jpg",
+"hash": "85d267b55ed1500f06954f473bd26bd4",
+"ct": "image/jpeg",
+"size": 89756
+},
+{
+"path": "index.html",
+"hash": "85aabdcef35ce4cf69007c746f3c4965",
+"ct": "text/html",
+"size": 99939
+},
+{
+"path": "media/en/ai-reel-A-2347-cover.jpg",
+"hash": "d81b8cd3a698b789602888352e87f5f4",
+"ct": "image/jpeg",
+"size": 133052
+},
+{
+"path": "media/en/ai-reel-A-2347.mp4",
+"hash": "ed8cad215d669c43f0c712d590fc85ad",
+"ct": "video/mp4",
+"size": 6221841
+},
+{
+"path": "media/en/ai-reel-B-build-cover.jpg",
+"hash": "bba93f475f2e0c84d55ede34bd8405c9",
+"ct": "image/jpeg",
+"size": 100891
+},
+{
+"path": "media/en/ai-reel-B-build.mp4",
+"hash": "862bca3478268d28aefeb01ae13f3554",
+"ct": "video/mp4",
+"size": 5768995
+},
+{
+"path": "media/en/ai-reel-C-test-cover.jpg",
+"hash": "35ed99182d0dee3e48754d06f0734769",
+"ct": "image/jpeg",
+"size": 119334
+},
+{
+"path": "media/en/ai-reel-C-test.mp4",
+"hash": "a379db004b37554de946b5194e707818",
+"ct": "video/mp4",
+"size": 4039000
+},
+{
+"path": "media/en/post1-night/slide-1.jpg",
+"hash": "bbeb744ebb2c273efcb27677a3012635",
+"ct": "image/jpeg",
+"size": 90541
+},
+{
+"path": "media/en/post1-night/slide-2.jpg",
+"hash": "b706f3cac182eb4c32b21d1d0f910049",
+"ct": "image/jpeg",
+"size": 109366
+},
+{
+"path": "media/en/post1-night/slide-3.jpg",
+"hash": "b8ffba8d7ba3b991b53dbd986e8e6f33",
+"ct": "image/jpeg",
+"size": 105839
+},
+{
+"path": "media/en/post1-night/slide-4.jpg",
+"hash": "675f48ffa45f784e5e8e5d7495971a14",
+"ct": "image/jpeg",
+"size": 153603
+},
+{
+"path": "media/en/post1-night/slide-5.jpg",
+"hash": "3c2c8769b9fe0eb37b8d9eeec2393132",
+"ct": "image/jpeg",
+"size": 258962
+},
+{
+"path": "media/en/post2-shift/slide-1.jpg",
+"hash": "ad60a2649b6ee722ff5740fdd258e152",
+"ct": "image/jpeg",
+"size": 75248
+},
+{
+"path": "media/en/post2-shift/slide-2.jpg",
+"hash": "f5a26d9fcfd083bbc47dc9af1713b2f2",
+"ct": "image/jpeg",
+"size": 101436
+},
+{
+"path": "media/en/post2-shift/slide-3.jpg",
+"hash": "e95578fb8127f1b1096e68cd075de023",
+"ct": "image/jpeg",
+"size": 94285
+},
+{
+"path": "media/en/post2-shift/slide-4.jpg",
+"hash": "fc7c690a0af66fa57e2e8fba0af5728f",
+"ct": "image/jpeg",
+"size": 104460
+},
+{
+"path": "media/en/post2-shift/slide-5.jpg",
+"hash": "a380622ab738367b8928d17cea30e9cd",
+"ct": "image/jpeg",
+"size": 273206
+},
+{
+"path": "media/en/post3-checklist/slide-1.jpg",
+"hash": "39bccb28b76ea959f779438b54471e62",
+"ct": "image/jpeg",
+"size": 73201
+},
+{
+"path": "media/en/post3-checklist/slide-2.jpg",
+"hash": "487b1d05e7223846e957b542e249dbd3",
+"ct": "image/jpeg",
+"size": 101104
+},
+{
+"path": "media/en/post3-checklist/slide-3.jpg",
+"hash": "aee9efd3b913b6b2cc7901d584a74a72",
+"ct": "image/jpeg",
+"size": 79112
+},
+{
+"path": "media/en/post3-checklist/slide-4.jpg",
+"hash": "cc55e503a20e43e8f7c973701d1c7a5e",
+"ct": "image/jpeg",
+"size": 79800
+},
+{
+"path": "media/en/post3-checklist/slide-5.jpg",
+"hash": "6f20574cada8aca8df2e3b6b7bc18100",
+"ct": "image/jpeg",
+"size": 258693
+},
+{
+"path": "media/en/reel1-2347-cover.jpg",
+"hash": "1dd4cc0530609052e59f0212d89a1682",
+"ct": "image/jpeg",
+"size": 65684
+},
+{
+"path": "media/en/reel1-2347.mp4",
+"hash": "86ba9b66a35f503714e0f8545fe01fd7",
+"ct": "video/mp4",
+"size": 1760706
+},
+{
+"path": "media/en/reel3-skills-cover.jpg",
+"hash": "bc4efe2d1a1bf95439c836ecbd2ab0f8",
+"ct": "image/jpeg",
+"size": 52638
+},
+{
+"path": "media/en/reel3-skills.mp4",
+"hash": "b2135e7dcc48cd06b172ae554af92a3c",
+"ct": "video/mp4",
+"size": 1842850
+},
+{
+"path": "media/ru/ai-reel-A-2347-cover.jpg",
+"hash": "661ed31d845a0d56e06a0f575d972fbd",
+"ct": "image/jpeg",
+"size": 135530
+},
+{
+"path": "media/ru/ai-reel-A-2347.mp4",
+"hash": "57ae9693abc3166e34189db80416aaf9",
+"ct": "video/mp4",
+"size": 6290540
+},
+{
+"path": "media/ru/ai-reel-B-build-cover.jpg",
+"hash": "858b4d9fa9cadf8ce45b0a5dd6fa9cb2",
+"ct": "image/jpeg",
+"size": 101414
+},
+{
+"path": "media/ru/ai-reel-B-build.mp4",
+"hash": "b3d83ebc6cff399c57de009f475bd3a0",
+"ct": "video/mp4",
+"size": 5783066
+},
+{
+"path": "media/ru/ai-reel-C-test-cover.jpg",
+"hash": "0d270817e8bdfc2dc67578fb32966ac7",
+"ct": "image/jpeg",
+"size": 121520
+},
+{
+"path": "media/ru/ai-reel-C-test.mp4",
+"hash": "fa913696c18422c46594189dde35a8b9",
+"ct": "video/mp4",
+"size": 4089632
+},
+{
+"path": "media/ru/post1-night/slide-1.jpg",
+"hash": "641460c660ced523a2604fa3884645a6",
+"ct": "image/jpeg",
+"size": 90301
+},
+{
+"path": "media/ru/post1-night/slide-2.jpg",
+"hash": "ce0090dcbce09a714ff78f4b71950da3",
+"ct": "image/jpeg",
+"size": 109786
+},
+{
+"path": "media/ru/post1-night/slide-3.jpg",
+"hash": "92fc6dce66fdce920c2eb0af171e6993",
+"ct": "image/jpeg",
+"size": 114229
+},
+{
+"path": "media/ru/post1-night/slide-4.jpg",
+"hash": "c0a3f4c08ed92da1cdf0a32c5be90aae",
+"ct": "image/jpeg",
+"size": 150637
+},
+{
+"path": "media/ru/post1-night/slide-5.jpg",
+"hash": "135ea04f426f315f8b87f8d9a19b08c6",
+"ct": "image/jpeg",
+"size": 263502
+},
+{
+"path": "media/ru/post2-shift/slide-1.jpg",
+"hash": "339c9d35cf31edb13d4d3b670cce30c2",
+"ct": "image/jpeg",
+"size": 75680
+},
+{
+"path": "media/ru/post2-shift/slide-2.jpg",
+"hash": "3efd936e924c4cdaecfeaf1f601538af",
+"ct": "image/jpeg",
+"size": 97382
+},
+{
+"path": "media/ru/post2-shift/slide-3.jpg",
+"hash": "e2c545cf76f85a6a9ea5ed8e6bdfa2af",
+"ct": "image/jpeg",
+"size": 104451
+},
+{
+"path": "media/ru/post2-shift/slide-4.jpg",
+"hash": "df46557c049d1bf2b65d33aa638d6182",
+"ct": "image/jpeg",
+"size": 106736
+},
+{
+"path": "media/ru/post2-shift/slide-5.jpg",
+"hash": "9d661862b720d74f7eafca12013c05b6",
+"ct": "image/jpeg",
+"size": 276013
+},
+{
+"path": "media/ru/post3-checklist/slide-1.jpg",
+"hash": "561da1f5acc75fd92cec28fe5b9185c9",
+"ct": "image/jpeg",
+"size": 86319
+},
+{
+"path": "media/ru/post3-checklist/slide-2.jpg",
+"hash": "c7c08ca8a241b69a8399ba7b36ee69f3",
+"ct": "image/jpeg",
+"size": 100368
+},
+{
+"path": "media/ru/post3-checklist/slide-3.jpg",
+"hash": "e29f1331a55fe186793704066e19268c",
+"ct": "image/jpeg",
+"size": 86734
+},
+{
+"path": "media/ru/post3-checklist/slide-4.jpg",
+"hash": "3a12d938ed9e3788c2364aa298295bd9",
+"ct": "image/jpeg",
+"size": 89084
+},
+{
+"path": "media/ru/post3-checklist/slide-5.jpg",
+"hash": "ffea4ad8415b08beaeb3b5fe552820ea",
+"ct": "image/jpeg",
+"size": 274787
+},
+{
+"path": "media/ru/reel1-2347-cover.jpg",
+"hash": "e8968d0faec880cd62b921f4e88b8fa8",
+"ct": "image/jpeg",
+"size": 63745
+},
+{
+"path": "media/ru/reel1-2347.mp4",
+"hash": "416f9804f7c27afa8129a833ffebdd64",
+"ct": "video/mp4",
+"size": 1805863
+},
+{
+"path": "media/ru/reel3-skills-cover.jpg",
+"hash": "f623c91fff22b08aae4ecab48e88b97c",
+"ct": "image/jpeg",
+"size": 49482
+},
+{
+"path": "media/ru/reel3-skills.mp4",
+"hash": "dd720789851c0c7c0bb64e53683d92d3",
+"ct": "video/mp4",
+"size": 1917396
+},
+{
+"path": "privacy.html",
+"hash": "17b234723d7fd36e4311b68e1900b3b8",
+"ct": "text/html",
+"size": 19503
+},
+{
+"path": "robots.txt",
+"hash": "2e1a97d531fd380ee7921929574b4d2b",
+"ct": "text/plain",
+"size": 67
+},
+{
+"path": "sitemap.xml",
+"hash": "80e906739d7f90714835df7aa210c899",
+"ct": "application/xml",
+"size": 157
+}
+]
+}
