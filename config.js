@@ -10,7 +10,7 @@ window.TR_CONFIG = {
 
   // ИИ-администратор: публичный webhook n8n (Webhook node, метод POST).
   // Пусто = на сайте работает встроенный демо-сценарий.
-  agentEndpoint: "",
+  agentEndpoint: "https://adsmeta888.app.n8n.cloud/webhook/tr-web-demo",  // демо-бот Lumière Studio, включён с согласия Татьяны 20.10.2026
 
   // Заявки с формы: публичный webhook n8n (Webhook node, метод POST).
   // Пусто = после отправки открывается WhatsApp с текстом заявки.
