@@ -27,7 +27,7 @@ window.TR_CONFIG = {
   instagramEn: "",                    // ссылка на англоязычный Instagram, когда будет создан
 
   // Аналитика и пиксели. Загружаются только после согласия посетителя на cookies.
-  ga4Id: "",          // "G-XXXXXXXXXX"
+  ga4Id: "G-H1K4TRMJ6P",  // поток ai.adsnew.org, прислан Татьяной 20.10.2026
   metaPixelId: "1630705058143577",  // пиксель link.adsnew.org, выбран Татьяной 19.10.2026
   tiktokPixelId: "",  // "CXXXXXXXXXXXXXXX"
 
