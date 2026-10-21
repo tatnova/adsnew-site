@@ -705,6 +705,7 @@ var params = {}; try{ new URLSearchParams(location.search).forEach(function(v,k)
 var attrKeys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid","gclid","ttclid"];
 var attr = {}; try{ attr = JSON.parse(sessionStorage.getItem("tr_attr")||"{}") }catch(e){}
 attrKeys.forEach(function(k){ if(params[k]) attr[k]=params[k] });
+if(params.fbclid) attr.fbclid_ts = Date.now();
 if(!attr.landing_referrer) attr.landing_referrer = document.referrer || "";
 try{ sessionStorage.setItem("tr_attr", JSON.stringify(attr)) }catch(e){}
 
@@ -790,21 +791,53 @@ function renderContacts(){
   if(C.bookingUrl){ document.getElementById("booking-link").href = C.bookingUrl; bw.hidden = false } else bw.hidden = true;
 }
 
-/* ---------- analytics (loaded only after consent) ---------- */
+/* ---------- analytics ----------
+   EU/EEA/UK/CH and Canada: nothing loads until «Принять» (opt-in).
+   Other regions (Israel, US...): loads by default, «Отказаться» or Global Privacy Control turns it off (opt-out). */
 var consent = store.get("tr_consent");
+var OPT_IN_TZ = /^(Europe\/|Atlantic\/(Reykjavik|Canary|Madeira|Azores|Faroe)|America\/(Toronto|Vancouver|Montreal|Halifax|Winnipeg|Edmonton|Regina|St_Johns|Moncton|Whitehorse|Yellowknife|Iqaluit|Glace_Bay|Goose_Bay|Dawson_Creek|Swift_Current))/;
+function optInRegion(){
+  var z = ""; try{ z = Intl.DateTimeFormat().resolvedOptions().timeZone || "" }catch(e){}
+  if(!z) return true;            // unknown: be strict
+  return OPT_IN_TZ.test(z);
+}
+function trackingAllowed(){
+  if(navigator.globalPrivacyControl === true) return false;
+  var c = store.get("tr_consent");
+  if(c==="yes") return true;
+  if(c==="no") return false;
+  return !optInRegion();
+}
 /* GA4 with Consent Mode: the tag loads on every visit; cookies and ad signals stay off until the visitor accepts */
 if(C.ga4Id){
   window.dataLayer=window.dataLayer||[]; window.gtag=function(){dataLayer.push(arguments)};
-  var g = consent==="yes" ? "granted" : "denied";
+  var g = trackingAllowed() ? "granted" : "denied";
   gtag("consent","default",{analytics_storage:g, ad_storage:g, ad_user_data:g, ad_personalization:g});
   var gs=document.createElement("script"); gs.async=true; gs.src="https://www.googletagmanager.com/gtag/js?id="+C.ga4Id; document.head.appendChild(gs);
   gtag("js",new Date()); gtag("config",C.ga4Id);
 }
-function track(name, data){
+function track(name, data, eventID){
   data = data || {};
   try{ if(window.gtag) gtag("event", name, data) }catch(e){}
-  try{ if(window.fbq){ var map={generate_lead:"Lead",demo_start:"ViewContent",schedule:"Schedule",contact:"Contact"}; if(map[name]) fbq("track", map[name], data); else fbq("trackCustom", name, data) } }catch(e){}
+  if(!trackingAllowed()) return;  // GA4 above runs in Consent Mode; ad pixels only when allowed
+  try{ if(window.fbq){ var map={generate_lead:"Lead",demo_start:"ViewContent",schedule:"Schedule",contact:"Contact"}; if(map[name]){ if(eventID) fbq("track", map[name], data, {eventID:eventID}); else fbq("track", map[name], data) } else fbq("trackCustom", name, data) } }catch(e){}
   try{ if(window.ttq){ var tmap={generate_lead:"SubmitForm",demo_start:"ViewContent",contact:"Contact"}; if(tmap[name]) ttq.track(tmap[name], data) } }catch(e){}
+}
+/* Meta server events (CAPI): same event_id as the pixel so Meta counts each event once */
+function cookieVal(n){ var m=document.cookie.match(new RegExp("(?:^|; )"+n+"=([^;]*)")); return m?decodeURIComponent(m[1]):"" }
+function adConsent(){ return navigator.globalPrivacyControl===true ? "no" : (store.get("tr_consent")||"") }
+function adAllowed(){ return trackingAllowed() }
+function newEventId(p){ return p+"-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8) }
+function metaIds(){
+  if(!adAllowed()) return {fbp:"", fbc:""};
+  var fbc = cookieVal("_fbc"); if(!fbc && attr.fbclid) fbc = "fb.1."+(attr.fbclid_ts||Date.now())+"."+attr.fbclid;
+  return {fbp:cookieVal("_fbp"), fbc:fbc};
+}
+var tz = ""; try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "" }catch(e){}
+function serverEvent(name, eventID, data){
+  if(!C.eventsEndpoint || !adAllowed()) return;
+  var ids = metaIds();
+  try{ fetch(C.eventsEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({event_name:name, event_id:eventID, page:location.href.split("#")[0], lang:lang, region:region, tz:tz, ad_consent:adConsent(), fbp:ids.fbp, fbc:ids.fbc, data:data||{}})}).catch(function(){}) }catch(e){}
 }
 function addScript(src){ var s=document.createElement("script"); s.async=true; s.src=src; document.head.appendChild(s) }
 function loadAnalytics(){
@@ -815,10 +848,23 @@ function loadAnalytics(){
 }
 var hasTrackers = !!(C.ga4Id||C.metaPixelId||C.tiktokPixelId);
 var cookieBar = document.getElementById("cookie");
-if(hasTrackers){ if(consent==="yes") loadAnalytics(); else if(consent!=="no") cookieBar.hidden=false }
-document.querySelectorAll("[data-consent]").forEach(function(b){ b.addEventListener("click", function(){ var v=b.dataset.consent; store.set("tr_consent",v); cookieBar.hidden=true; if(v==="yes") loadAnalytics() }) });
+var loaded = false;
+function startAnalytics(){ if(!loaded){ loaded=true; loadAnalytics() } }
+if(hasTrackers){
+  if(trackingAllowed()) startAnalytics();
+  if(consent!=="yes" && consent!=="no") cookieBar.hidden=false;
+}
+document.querySelectorAll("[data-consent]").forEach(function(b){ b.addEventListener("click", function(){
+  var v=b.dataset.consent; store.set("tr_consent",v); consent=v; cookieBar.hidden=true;
+  if(v==="yes") startAnalytics();
+  else if(loaded){
+    try{ if(window.fbq) fbq("consent","revoke") }catch(e){}
+    try{ if(window.gtag) gtag("consent","update",{analytics_storage:"denied", ad_storage:"denied", ad_user_data:"denied", ad_personalization:"denied"}) }catch(e){}
+    try{ if(window.ttq && ttq.disableCookie) ttq.disableCookie() }catch(e){}
+  }
+}) });
 document.getElementById("cookie-settings").addEventListener("click", function(){ cookieBar.hidden=false });
-document.addEventListener("click", function(e){ var a=e.target.closest("[data-cta]"); if(a){ track("cta_click",{cta:a.dataset.cta}); if(/contact_/.test(a.dataset.cta)) track("contact",{channel:a.dataset.cta}) } var p=e.target.closest("[data-plan]"); if(p){ var pl=document.getElementById("lf-plan"), it=p.dataset.intent||"", m=document.getElementById("lf-msg"); pl.value = p.dataset.plan || "unsure"; document.getElementById("lf-intent").value=it; if(it==="promo") document.getElementById("lf-promo").checked=true; if(it==="consult" && !m.value) m.value = lang==="ru" ? "Хочу получить консультацию по тарифу" : "I'd like a consultation about the plan"; track("select_plan",{plan:p.dataset.plan||"", intent:it, region:region}); setTimeout(function(){ try{ document.getElementById("lf-name").focus({preventScroll:true}) }catch(err){} }, 400) } });
+document.addEventListener("click", function(e){ var a=e.target.closest("[data-cta]"); if(a){ track("cta_click",{cta:a.dataset.cta}); var ch=/^contact_(whatsapp|telegram)/.exec(a.dataset.cta||""); if(ch){ var cid=newEventId("contact"); track("contact",{channel:ch[1], placement:a.dataset.cta}, cid); serverEvent("Contact", cid, {channel:ch[1], placement:a.dataset.cta}) } } var p=e.target.closest("[data-plan]"); if(p){ var pl=document.getElementById("lf-plan"), it=p.dataset.intent||"", m=document.getElementById("lf-msg"); pl.value = p.dataset.plan || "unsure"; document.getElementById("lf-intent").value=it; if(it==="promo") document.getElementById("lf-promo").checked=true; if(it==="consult" && !m.value) m.value = lang==="ru" ? "Хочу получить консультацию по тарифу" : "I'd like a consultation about the plan"; track("select_plan",{plan:p.dataset.plan||"", intent:it, region:region}); setTimeout(function(){ try{ document.getElementById("lf-name").focus({preventScroll:true}) }catch(err){} }, 400) } });
 
 /* ---------- AI receptionist demo ---------- */
 var chat = (function(){
@@ -952,10 +998,11 @@ form.addEventListener("submit", function(e){
   fd.forEach(function(v,k){ data[k]=String(v).trim() });
   if(!data.name || !data.contact){ showMsg(lang==="ru"?"Укажите имя и контакт для связи.":"Please add your name and how to reach you.", true); return }
   if(!form.querySelector("#lf-consent").checked){ showMsg(lang==="ru"?"Отметьте согласие на обработку данных.":"Please accept the privacy policy to continue.", true); return }
-  var lead = Object.assign({}, data, {lang:lang, page:location.href.split("#")[0], submitted_at:new Date().toISOString(), event_id:"lead-"+Date.now()}, attr);
+  var ids = metaIds();
+  var lead = Object.assign({}, data, attr, {lang:lang, page:location.href.split("#")[0], submitted_at:new Date().toISOString(), event_id:newEventId("lead"), ad_consent:adConsent(), fbp:ids.fbp, fbc:ids.fbc, tz:tz});
   var btn = document.getElementById("lf-submit"); btn.disabled=true;
   var waText = (lang==="ru"?"Заявка с сайта\n":"Website inquiry\n")+["name","business","business_type","country","contact_channel","contact","plan","promo","region","message"].map(function(k){return data[k]?k+": "+data[k]:""}).filter(Boolean).join("\n");
-  function done(){ btn.disabled=false; form.reset(); document.getElementById("lf-region").value=region; document.getElementById("lf-intent").value=""; track("generate_lead",{business_type:data.business_type,country:data.country,plan:data.plan,region:region,event_id:lead.event_id}) }
+  function done(){ btn.disabled=false; form.reset(); document.getElementById("lf-region").value=region; document.getElementById("lf-intent").value=""; track("generate_lead",{business_type:data.business_type,country:data.country,plan:data.plan,region:region}, lead.event_id) }
   if(!C.leadEndpoint){
     showMsg((lang==="ru"?"Спасибо! Чтобы заявка дошла быстрее, отправьте её в WhatsApp: ":"Thank you! To get a faster reply, send it via WhatsApp: ")+'<a href="'+waLink(waText)+'" target="_blank" rel="noopener">WhatsApp</a>'); done(); return;
   }

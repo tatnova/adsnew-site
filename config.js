@@ -16,6 +16,10 @@ window.TR_CONFIG = {
   // Пусто = после отправки открывается WhatsApp с текстом заявки.
   leadEndpoint: "https://adsmeta888.app.n8n.cloud/webhook/tr-landing-lead",
 
+  // Серверные события Meta (Contact при клике WhatsApp/Telegram). Lead отправляет сценарий заявок.
+  // Пусто = только пиксель в браузере.
+  eventsEndpoint: "https://adsmeta888.app.n8n.cloud/webhook/tr-site-event",
+
   // Запись на консультацию (Cal.com / Calendly, бесплатный тариф). Пусто = кнопка ведёт в WhatsApp.
   bookingUrl: "",
 
@@ -23,8 +27,8 @@ window.TR_CONFIG = {
   whatsapp: "972537086545",          // с сайта adsnew.org
   telegram: "mailovaja",               // подтверждено Татьяной 14.10.2026, показывать после согласования превью
   email: "adsmeta888@gmail.com",
-  instagramRu: "",                    // ссылка на русскоязычный Instagram, когда будет создан
-  instagramEn: "",                    // ссылка на англоязычный Instagram, когда будет создан
+  instagramRu: "https://www.instagram.com/ai.richmann/",
+  instagramEn: "https://www.instagram.com/ai.richmann.en/",
 
   // Аналитика и пиксели. Загружаются только после согласия посетителя на cookies.
   ga4Id: "G-H1K4TRMJ6P",  // поток ai.adsnew.org, прислан Татьяной 20.10.2026
