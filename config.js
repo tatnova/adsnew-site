@@ -24,7 +24,7 @@ window.TR_CONFIG = {
   bookingUrl: "",
 
   // Контакты
-  whatsapp: "972537086545",          // с сайта adsnew.org
+  whatsapp: "972552468903",          // основной WhatsApp (YCloud), +972 55-246-8903
   telegram: "mailovaja",               // подтверждено Татьяной 14.10.2026, показывать после согласования превью
   email: "adsmeta888@gmail.com",
   instagramRu: "https://www.instagram.com/ai.richmann/",
