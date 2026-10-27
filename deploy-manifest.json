@@ -2,9 +2,9 @@
 "files": [
 {
 "path": "config.js",
-"hash": "ac3d340dcfb3314d72f1b5a93a0cb004",
+"hash": "fdecd9bb899298288dea1c36419a00b5",
 "ct": "application/javascript",
-"size": 3407
+"size": 3435
 },
 {
 "path": "favicon.svg",
@@ -110,9 +110,9 @@
 },
 {
 "path": "index.html",
-"hash": "052ece34b29ea937b380057eaaed36cb",
+"hash": "cf0269103dea7232e33c773abd080638",
 "ct": "text/html",
-"size": 105606
+"size": 105673
 },
 {
 "path": "media/en/ai-reel-A-2347-cover.jpg",

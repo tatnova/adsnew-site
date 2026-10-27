@@ -779,13 +779,13 @@ function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&a
 function waLink(text){ return "https://wa.me/"+C.whatsapp+(text?"?text="+encodeURIComponent(text):"") }
 function renderContacts(){
   var el = document.getElementById("contacts-list"), h = "";
-  if(C.whatsapp) h += '<a href="'+waLink(lang==="ru"?"Здравствуйте! Интересует ИИ-администратор для салона.":"Hi! I'm interested in an AI receptionist for my business.")+'" target="_blank" rel="noopener" data-cta="contact_whatsapp">WhatsApp <code>+'+C.whatsapp.replace(/^(\d{3})(\d{2})(\d{3})(\d{4})$/,"$1 $2 $3 $4")+'</code></a>';
+  if(C.whatsapp) h += '<a href="'+waLink(lang==="ru"?"Здравствуйте, Татьяна! Интересует AI-агент для моего бизнеса.":"Hi Tatyana! I’m interested in an AI agent for my business.")+'" target="_blank" rel="noopener" data-cta="contact_whatsapp">WhatsApp <code>+'+C.whatsapp.replace(/^(\d{3})(\d{2})(\d{3})(\d{4})$/,"$1 $2 $3 $4")+'</code></a>';
   if(C.telegram) h += '<a href="https://t.me/'+esc(C.telegram)+'" target="_blank" rel="noopener" data-cta="contact_telegram">Telegram <code>@'+esc(C.telegram)+'</code></a>';
   var ig = lang==="ru" ? C.instagramRu : C.instagramEn;
   if(ig) h += '<a href="'+esc(ig)+'" target="_blank" rel="noopener" data-cta="contact_instagram">Instagram</a>';
   if(C.email) h += '<a href="mailto:'+esc(C.email)+'" data-cta="contact_email">Email <code>'+esc(C.email)+'</code></a>';
   el.innerHTML = h;
-  var wa = C.whatsapp ? waLink(lang==="ru"?"Здравствуйте! Интересует ИИ-администратор для салона.":"Hi! I'm interested in an AI receptionist for my business.") : "", tg = C.telegram ? "https://t.me/"+C.telegram : "";
+  var wa = C.whatsapp ? waLink(lang==="ru"?"Здравствуйте, Татьяна! Интересует AI-агент для моего бизнеса.":"Hi Tatyana! I’m interested in an AI agent for my business.") : "", tg = C.telegram ? "https://t.me/"+C.telegram : "";
   document.querySelectorAll("[data-direct]").forEach(function(a){ var u = a.dataset.direct==="wa" ? wa : tg; if(u) a.href = u; else a.hidden = true });
   var bw = document.getElementById("booking-wrap");
   if(C.bookingUrl){ document.getElementById("booking-link").href = C.bookingUrl; bw.hidden = false } else bw.hidden = true;
@@ -1001,7 +1001,7 @@ form.addEventListener("submit", function(e){
   var ids = metaIds();
   var lead = Object.assign({}, data, attr, {lang:lang, page:location.href.split("#")[0], submitted_at:new Date().toISOString(), event_id:newEventId("lead"), ad_consent:adConsent(), fbp:ids.fbp, fbc:ids.fbc, tz:tz});
   var btn = document.getElementById("lf-submit"); btn.disabled=true;
-  var waText = (lang==="ru"?"Заявка с сайта\n":"Website inquiry\n")+["name","business","business_type","country","contact_channel","contact","plan","promo","region","message"].map(function(k){return data[k]?k+": "+data[k]:""}).filter(Boolean).join("\n");
+  var waText = (lang==="ru"?"Заявка на AI-агента с сайта\n":"AI agent inquiry from the website\n")+["name","business","business_type","country","contact_channel","contact","plan","promo","region","message"].map(function(k){return data[k]?k+": "+data[k]:""}).filter(Boolean).join("\n");
   function done(){ btn.disabled=false; form.reset(); document.getElementById("lf-region").value=region; document.getElementById("lf-intent").value=""; track("generate_lead",{business_type:data.business_type,country:data.country,plan:data.plan,region:region}, lead.event_id) }
   if(!C.leadEndpoint){
     showMsg((lang==="ru"?"Спасибо! Чтобы заявка дошла быстрее, отправьте её в WhatsApp: ":"Thank you! To get a faster reply, send it via WhatsApp: ")+'<a href="'+waLink(waText)+'" target="_blank" rel="noopener">WhatsApp</a>'); done(); return;
