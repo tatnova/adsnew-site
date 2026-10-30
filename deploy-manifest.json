@@ -431,6 +431,12 @@
 "hash": "80e906739d7f90714835df7aa210c899",
 "ct": "application/xml",
 "size": 157
+},
+{
+"path": "media/wa-avatar-8903.jpg",
+"hash": "02ced93b99cca094be0f1f081f789bcc",
+"ct": "image/jpeg",
+"size": 85566
 }
 ]
 }
